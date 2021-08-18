@@ -1,0 +1,70 @@
+library(readxl)
+
+May2019 <- read_excel("Point17May.xlsx", sheet = "Sheet1")
+View(May2019)
+
+May2021 <- read_excel("Point17May.xlsx", sheet = "Sheet2")
+View(May2021)
+
+hours2019 <- May2019$hour
+volume2019 <- May2019$Total
+hours2021 <- May2021$hour
+volume2021 <- May2021$Total
+
+hourvec <- c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
+volvec2019 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+volvec2021 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+
+
+for (i in 121:240){
+  for (j in 1:24) {
+    if (hours2019[i] == hourvec[j]){
+      volvec2019[j] <- volvec2019[j]+volume2019[i]
+    }
+  }
+    
+}
+
+for (j in 1:24) {
+  volvec2019[j] <- volvec2019[j]/5
+}
+
+for (i in 49:168){
+  for (j in 1:24) {
+    if (hours2021[i] == hourvec[j]){
+      volvec2021[j] <- volvec2021[j]+volume2021[i]
+    }
+  }
+    
+}
+
+for (j in 1:24) {
+  volvec2021[j] <- volvec2021[j]/5
+}
+
+# Now sum hours
+morning2019 <- 0
+morning2021 <- 0
+afternoon2019 <- 0
+afternoon2021 <- 0
+
+for (i in 5:9){
+  morning2019 <- morning2019 + volvec2019[i]
+  morning2021 <- morning2021 + volvec2021[i]
+  afternoon2019 <- afternoon2019 + volvec2019[i+9]
+  afternoon2021 <- afternoon2021 + volvec2021[i+9]
+}
+
+morning2019 <- morning2019/5
+morning2021 <- morning2021/5
+afternoon2019 <- afternoon2019/5
+afternoon2021 <- afternoon2021/5
+morningratio <- morning2021/morning2019 - 1
+afternoonratio <- afternoon2021/afternoon2019 - 1
+
+morningratio
+afternoonratio
+morning2019
+morning2021
+afternoon2019
+afternoon2021
