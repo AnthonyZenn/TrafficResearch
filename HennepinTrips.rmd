@@ -1,0 +1,148 @@
+library(ggplot2)
+library(readxl)
+
+Hennepin_County_Trips <- read_excel("Hennepin County Trips.xlsx")
+
+home<- Hennepin_County_Trips$Population_Staying_at_Home
+nhome<- Hennepin_County_Trips$Population_Not_Staying_at_Home
+tripstotal <- Hennepin_County_Trips$Number_of_Trips
+trips1 <- Hennepin_County_Trips$Trips_less1
+trips13<- Hennepin_County_Trips$Trips_1to3
+trips35<- Hennepin_County_Trips$Trips_3to5
+trips510<- Hennepin_County_Trips$Trips_5to10
+trips1025<- Hennepin_County_Trips$Trips_10to25
+trips2550<- Hennepin_County_Trips$Trips_25to50
+trips50100<- Hennepin_County_Trips$Trips_50to100
+trips100250<- Hennepin_County_Trips$Trips_100to250
+trips250500<- Hennepin_County_Trips$Trips_250to500
+trips500<- Hennepin_County_Trips$Trips_greaterequal500
+
+home_2019 <- rep(0,365)
+nhome_2019 <- rep(0,365)
+tripstotal_2019 <- rep(0,365)
+trips1_2019 <- rep(0,365)
+trips13_2019 <- rep(0,365)
+trips35_2019 <- rep(0,365)
+trips510_2019 <- rep(0,365)
+trips1025_2019 <- rep(0,365)
+trips2550_2019 <- rep(0,365)
+trips50100_2019 <- rep(0,365)
+trips100250_2019 <- rep(0,365)
+trips250500_2019 <- rep(0,365)
+trips500_2019 <- rep(0,365)
+
+home_2020 <- rep(0,365)
+nhome_2020 <- rep(0,365)
+tripstotal_2020 <- rep(0,365)
+trips1_2020 <- rep(0,365)
+trips13_2020 <- rep(0,365)
+trips35_2020 <- rep(0,365)
+trips510_2020 <- rep(0,365)
+trips1025_2020 <- rep(0,365)
+trips2550_2020 <- rep(0,365)
+trips50100_2020 <- rep(0,365)
+trips100250_2020 <- rep(0,365)
+trips250500_2020 <- rep(0,365)
+trips500_2020 <- rep(0,365)
+
+home_2021 <- rep(0,365)
+nhome_2021 <- rep(0,365)
+tripstotal_2021 <- rep(0,365)
+trips1_2021 <- rep(0,365)
+trips13_2021 <- rep(0,365)
+trips35_2021 <- rep(0,365)
+trips510_2021 <- rep(0,365)
+trips1025_2021 <- rep(0,365)
+trips2550_2021 <- rep(0,365)
+trips50100_2021 <- rep(0,365)
+trips100250_2021 <- rep(0,365)
+trips250500_2021 <- rep(0,365)
+trips500_2021 <- rep(0,365)
+
+day <- rep(0,365)
+
+for (i in 1:365){
+
+  day[i] <- i
+  home_2019[i] <- home[i]
+  nhome_2019[i] <- nhome[i]
+  tripstotal_2019[i] <- tripstotal[i]
+  trips1_2019[i] <- trips1[i]
+  trips13_2019[i] <- trips13[i]
+  trips35_2019[i] <- trips35[i]
+  trips510_2019[i] <- trips510[i]
+  trips1025_2019[i] <- trips1025[i]
+  trips2550_2019[i] <- trips2550[i]
+  trips50100_2019[i] <- trips50100[i]
+  trips100250_2019[i] <- trips100250[i]
+  trips250500_2019[i] <- trips250500[i]
+  trips500_2019[i] <- trips500[i]
+}
+
+for (i in 366:424){
+
+  home_2020[i-365] <- home[i]
+  nhome_2020[i-365] <- nhome[i]
+  tripstotal_2020[i-365] <- tripstotal[i]
+  trips1_2020[i-365] <- trips1[i]
+  trips13_2020[i-365] <- trips13[i]
+  trips35_2020[i-365] <- trips35[i]
+  trips510_2020[i-365] <- trips510[i]
+  trips1025_2020[i-365] <- trips1025[i]
+  trips2550_2020[i-365] <- trips2550[i]
+  trips50100_2020[i-365] <- trips50100[i]
+  trips100250_2020[i-365] <- trips100250[i]
+  trips250500_2020[i-365] <- trips250500[i]
+  trips500_2020[i-365] <- trips500[i]
+}
+
+for (i in 426:731){
+
+  home_2020[i-366] <- home[i]
+  nhome_2020[i-366] <- nhome[i]
+  tripstotal_2020[i-366] <- tripstotal[i]
+  trips1_2020[i-366] <- trips1[i]
+  trips13_2020[i-366] <- trips13[i]
+  trips35_2020[i-366] <- trips35[i]
+  trips510_2020[i-366] <- trips510[i]
+  trips1025_2020[i-366] <- trips1025[i]
+  trips2550_2020[i-366] <- trips2550[i]
+  trips50100_2020[i-366] <- trips50100[i]
+  trips100250_2020[i-366] <- trips100250[i]
+  trips250500_2020[i-366] <- trips250500[i]
+  trips500_2020[i-366] <- trips500[i]
+}
+
+for (i in 732:908){
+
+  home_2021[i-731] <- home[i]
+  nhome_2021[i-731] <- nhome[i]
+  tripstotal_2021[i-731] <- tripstotal[i]
+  trips1_2021[i-731] <- trips1[i]
+  trips13_2021[i-731] <- trips13[i]
+  trips35_2021[i-731] <- trips35[i]
+  trips510_2021[i-731] <- trips510[i]
+  trips1025_2021[i-731] <- trips1025[i]
+  trips2550_2021[i-731] <- trips2550[i]
+  trips50100_2021[i-731] <- trips50100[i]
+  trips100250_2021[i-731] <- trips100250[i]
+  trips250500_2021[i-731] <- trips250500[i]
+  trips500_2021[i-731] <- trips500[i]
+}
+
+datag <- data.frame(day, tripstotal_2019, trips1_2019, trips13_2019, 
+trips35_2019, trips510_2019, trips1025_2019, trips2550_2019,
+trips50100_2019, trips100250_2019,
+trips250500_2019, trips500_2019, tripstotal_2020, trips1_2020, trips13_2020, 
+trips35_2020, trips510_2020, trips1025_2020, trips2550_2020,
+trips50100_2020, trips100250_2020,
+trips250500_2020, trips500_2020, tripstotal_2021, trips1_2021, trips13_2021, 
+trips35_2021, trips510_2021, trips1025_2021, trips2550_2021,
+trips50100_2021, trips100250_2021, trips250500_2021, trips500_2021)
+
+ggplot(datag, aes(day)) + 
+  geom_point(aes(y = trips35_2019, color = '2019')) + 
+  geom_point(aes(y = trips35_2020, color = '2020')) +
+  geom_point(aes(y = trips35_2021, color = '2021')) +
+  ggtitle("3-5 mile trips Hennepin County") + xlab("day") +
+  ylab("total trips")
