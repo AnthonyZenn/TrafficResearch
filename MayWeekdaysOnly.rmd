@@ -1,0 +1,83 @@
+library(ggplot2)
+library(readxl)
+TH212EB2019 <- read_excel("TH212 EB TH 41 May.xlsx", 
+    sheet = "Sheet1")
+View(TH212EB2019)
+TH212EB2020 <- read_excel("TH212 EB TH 41 May.xlsx", 
+    sheet = "Sheet2")
+View(TH212EB2020)
+TH212EB2021 <- read_excel("TH212 EB TH 41 May.xlsx", 
+    sheet = "Sheet3")
+View(TH212EB20201)
+
+hours2019 <- TH212EB2019$hour
+volume2019 <- TH212EB2019$Total
+hours2020 <- TH212EB2020$hour
+volume2020 <- TH212EB2020$Total
+hours2021 <- TH212EB2021$hour
+volume2021 <- TH212EB2021$Total
+
+hourvec <- c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
+volvec2019 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+volvec2020 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+volvec2021 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+
+volwknd2019 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+volwknd2020 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+volwknd2021 <- c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+#First Monday in 2019 is May 6
+hours2019[121]
+# should be 0 ^^
+
+for (i in 121:240){
+  for (j in 1:24) {
+    if (hours2019[i] == hourvec[j]){
+      volvec2019[j] <- volvec2019[j]+volume2019[i]
+    }
+  }
+    
+}
+
+for (j in 1:24) {
+  volvec2019[j] <- volvec2019[j]/5
+}
+
+#First Monday in 2020 is May 4
+hours2020[73]
+#^^ should be 0
+for (i in 73:192){
+  for (j in 1:24) {
+    if (hours2020[i] == hourvec[j]){
+      volvec2020[j] <- volvec2020[j]+volume2020[i]
+    }
+  }
+    
+}
+
+for (j in 1:24) {
+  volvec2020[j] <- volvec2020[j]/5
+}
+
+#First Monday in May 2021 is May 3
+hours2021[49]
+#^^ should be 0
+for (i in 49:168){
+  for (j in 1:24) {
+    if (hours2021[i] == hourvec[j]){
+      volvec2021[j] <- volvec2021[j]+volume2021[i]
+    }
+  }
+    
+}
+
+for (j in 1:24) {
+  volvec2021[j] <- volvec2021[j]/5
+}
+
+datag <- data.frame(hourvec, volvec2019, volvec2020, volvec2021)
+ggplot(datag, aes(hourvec)) + 
+  geom_line(aes(y = volvec2019, color = '2019')) + 
+  geom_line(aes(y = volvec2020, color = '2020')) +
+  geom_line(aes(y = volvec2021, color = '2021')) +
+  ggtitle("TH212 at TH 41 \nWeekdays in May") + xlab("hour") +
+  ylab("average vehicle count") 
