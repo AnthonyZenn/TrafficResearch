@@ -1,0 +1,25 @@
+library(ggplot2)
+library(ggpubr)
+library(png)
+library(readxl)
+
+myimage <- readPNG("TwinCitiesMap.png")
+
+HMP <- read_excel("HeatMapPoints.xlsx", sheet = "Sheet1")
+
+
+x<-HMP$x
+y<-HMP$y
+z <- HMP$afternoonratio
+dat <- data.frame(x,y,circlefill=z)
+
+ggplot(dat)+background_image(myimage)+aes(x,y)+
+scale_colour_gradientn(
+        colours=c('darkred','red','yellow','blue','darkblue'),
+        limits=c(-0.6,0.6))+
+geom_point(aes(colour=circlefill,size=10)) +
+xlim(0,500) + ylim(0,500) + ggtitle("Afternoon Weekdays First Week of May")+
+theme(axis.line=element_blank(),axis.text.x=element_blank(),
+          axis.text.y=element_blank(),axis.ticks=element_blank(),
+         axis.title.x=element_blank(),
+         axis.title.y=element_blank())
